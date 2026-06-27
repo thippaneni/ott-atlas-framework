@@ -1,0 +1,82 @@
+atlas:
+  name: Atlas
+  specification: Atlas Technical Specification
+  acronym: ATS
+  version: 1.0.0
+  status: draft
+  framework_type: AI-native engineering framework
+  methodology: Specification-Driven Software Development
+
+project:
+  name: ott-atlas-framework
+  description: Reusable AI-native engineering framework for Overtime Techie projects.
+  language_agnostic: true
+  ai_provider_agnostic: true
+  project_agnostic: true
+
+architecture:
+  layers:
+    - id: layer_1
+      name: Project Metadata
+    - id: layer_2
+      name: Engineering Governance
+    - id: layer_3
+      name: AI Context Management
+    - id: layer_4
+      name: Knowledge System
+    - id: layer_5
+      name: Specifications
+  dependency_rule: Every layer depends only on lower layers.
+
+root_files:
+  readme: README.md
+  manifest: manifest.yaml
+  index: index.yaml
+  capabilities: capabilities.yaml
+  contexts: contexts.yaml
+  principles: principles.md
+  specification: ATS.md
+
+directories:
+  - instructions
+  - patterns
+  - rules
+  - skills
+  - standards
+  - architecture
+  - knowledge
+  - agents
+  - prompts
+  - templates
+  - checklists
+  - schemas
+
+validation:
+  required_files:
+    - README.md
+    - manifest.yaml
+    - index.yaml
+    - capabilities.yaml
+    - contexts.yaml
+    - principles.md
+    - ATS.md
+  required_schemas:
+    - schemas/manifest.schema.json
+    - schemas/index.schema.json
+    - schemas/capabilities.schema.json
+  validates:
+    - required_files
+    - yaml_schemas
+    - references
+    - dependencies
+    - circular_references
+    - version_compatibility
+    - broken_links
+
+security:
+  forbidden_content:
+    - passwords
+    - api_keys
+    - secrets
+    - certificates
+    - sensitive_credentials

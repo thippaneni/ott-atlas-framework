@@ -1,0 +1,109 @@
+version: 1.0.0
+purpose: Defines reusable context-loading profiles for selective Atlas context loading.
+
+rules:
+  selective_loading_required: true
+  no_unrelated_modules: true
+  default_base_context:
+    - manifest.yaml
+    - principles.md
+    - capabilities.yaml
+
+contexts:
+  backend:
+    description: Backend API and service implementation context.
+    include:
+      - manifest.yaml
+      - principles.md
+      - capabilities.yaml
+      - instructions/backend.md
+      - patterns/backend/
+      - rules/api.yaml
+      - rules/security.yaml
+      - standards/backend/
+      - architecture/
+      - specifications/feature/
+    exclude:
+      - unrelated_frontend_modules
+      - unrelated_deployment_modules
+
+  frontend:
+    description: Frontend implementation and user experience context.
+    include:
+      - manifest.yaml
+      - principles.md
+      - capabilities.yaml
+      - instructions/frontend.md
+      - patterns/frontend/
+      - rules/frontend.yaml
+      - standards/frontend/
+      - specifications/feature/
+      - templates/ui/
+    exclude:
+      - unrelated_backend_internals
+      - unrelated_deployment_modules
+
+  review:
+    description: Change review, quality, compliance, and regression context.
+    include:
+      - manifest.yaml
+      - principles.md
+      - capabilities.yaml
+      - standards/
+      - rules/
+      - checklists/
+      - architecture/
+      - specifications/
+    exclude:
+      - unrelated_domain_knowledge
+
+  architecture:
+    description: Architecture, decisions, constraints, and traceability context.
+    include:
+      - manifest.yaml
+      - principles.md
+      - architecture/
+      - standards/
+      - patterns/
+      - specifications/architecture/
+      - knowledge/
+    exclude:
+      - unrelated_implementation_details
+
+  testing:
+    description: Verification, acceptance criteria, and test planning context.
+    include:
+      - manifest.yaml
+      - principles.md
+      - standards/testing/
+      - rules/testing.yaml
+      - checklists/testing/
+      - specifications/
+    exclude:
+      - unrelated_ui_assets
+
+  security:
+    description: Security review, secrets policy, and secure defaults context.
+    include:
+      - manifest.yaml
+      - principles.md
+      - rules/security.yaml
+      - standards/security/
+      - checklists/security/
+      - architecture/
+    exclude:
+      - secrets
+      - credentials
+      - unrelated_non_security_modules
+
+  deployment:
+    description: Deployment, operations, reproducibility, and automation context.
+    include:
+      - manifest.yaml
+      - principles.md
+      - architecture/
+      - standards/deployment/
+      - checklists/deployment/
+      - specifications/deployment/
+    exclude:
+      - unrelated_feature_details

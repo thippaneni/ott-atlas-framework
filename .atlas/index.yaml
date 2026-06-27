@@ -1,0 +1,135 @@
+version: 1.0.0
+atlas:
+  name: Atlas
+  specification: ATS.md
+
+boot:
+  load_order:
+    - manifest.yaml
+    - principles.md
+    - capabilities.yaml
+    - contexts.yaml
+    - index.yaml
+  module_discovery: index.yaml
+
+knowledge_graph:
+  purpose: Defines the Atlas knowledge graph for module discovery, dependencies, load order, and context resolution.
+  nodes:
+    - skills
+    - patterns
+    - rules
+    - instructions
+    - specifications
+    - templates
+    - architecture
+  edges:
+    - depends_on
+    - implements
+    - references
+    - extends
+    - validates
+    - replaces
+
+modules:
+  instructions:
+    path: instructions/
+    type: governance
+    required_metadata:
+      - purpose
+      - scope
+      - version
+  patterns:
+    path: patterns/
+    type: development_pattern
+    required_metadata:
+      - purpose
+      - examples
+      - anti_patterns
+      - version
+  rules:
+    path: rules/
+    type: validation_rule
+    required_metadata:
+      - purpose
+      - scope
+      - references
+      - version
+  skills:
+    path: skills/
+    type: capability
+    required_metadata:
+      - purpose
+      - best_practices
+      - references
+      - version
+  standards:
+    path: standards/
+    type: engineering_standard
+    required_metadata:
+      - purpose
+      - scope
+      - version
+  architecture:
+    path: architecture/
+    type: architecture_knowledge
+    required_metadata:
+      - purpose
+      - decisions
+      - references
+      - version
+  knowledge:
+    path: knowledge/
+    type: domain_knowledge
+    required_metadata:
+      - purpose
+      - scope
+      - references
+      - version
+  agents:
+    path: agents/
+    type: ai_agent
+    required_metadata:
+      - responsibilities
+      - decision_boundaries
+      - inputs
+      - outputs
+      - definition_of_done
+  prompts:
+    path: prompts/
+    type: prompt_template
+    required_metadata:
+      - purpose
+      - inputs
+      - outputs
+      - version
+  templates:
+    path: templates/
+    type: artifact_template
+    required_metadata:
+      - purpose
+      - scope
+      - version
+  checklists:
+    path: checklists/
+    type: verification_checklist
+    required_metadata:
+      - purpose
+      - scope
+      - version
+
+specification_hierarchy:
+  - vision
+  - prd
+  - srs
+  - architecture
+  - domain_model
+  - epic
+  - feature
+  - story
+  - task
+  - implementation
+
+extension_policy:
+  projects_may_extend_atlas: true
+  extensions_may_modify_core_behavior: false
+  custom_modules_registered_through: index.yaml

@@ -1,0 +1,220 @@
+version: 1.0.0
+purpose: Defines AI roles, skills, responsibilities, and supported operations.
+
+agents:
+  architect:
+    title: Architect
+    responsibilities:
+      - architecture
+      - solution_design
+      - architectural_decision_traceability
+      - specification_alignment
+    decision_boundaries:
+      - Must follow approved specifications and architecture decisions.
+      - Must record architectural tradeoffs.
+    inputs:
+      - vision
+      - prd
+      - srs
+      - architecture
+    outputs:
+      - architecture_decisions
+      - design_guidance
+      - implementation_constraints
+    definition_of_done:
+      - Decisions are traceable.
+      - Dependencies and constraints are documented.
+
+  backend_engineer:
+    title: Backend Engineer
+    responsibilities:
+      - api_design
+      - service_implementation
+      - business_rules
+      - backend_testing
+    decision_boundaries:
+      - Must not implement undocumented behavior.
+      - Must keep implementation verifiable.
+    inputs:
+      - feature_specification
+      - api_contract
+      - database_design
+    outputs:
+      - backend_code
+      - tests
+      - implementation_notes
+    definition_of_done:
+      - Behavior matches specification.
+      - Tests cover business rules.
+
+  frontend_engineer:
+    title: Frontend Engineer
+    responsibilities:
+      - user_interface
+      - user_experience
+      - frontend_state
+      - frontend_testing
+    decision_boundaries:
+      - Must follow UI design and feature specification.
+    inputs:
+      - feature_specification
+      - ui_design
+      - api_contract
+    outputs:
+      - frontend_code
+      - tests
+      - accessibility_notes
+    definition_of_done:
+      - UI behavior matches specification.
+      - User flows are verified.
+
+  database_engineer:
+    title: Database Engineer
+    responsibilities:
+      - schema_design
+      - indexing
+      - data_integrity
+      - query_performance
+    decision_boundaries:
+      - Must preserve domain model intent and data constraints.
+    inputs:
+      - domain_model
+      - database_design
+    outputs:
+      - schema_changes
+      - migration_notes
+      - performance_guidance
+    definition_of_done:
+      - Data model is traceable to specifications.
+      - Integrity constraints are documented.
+
+  ai_engineer:
+    title: AI Engineer
+    responsibilities:
+      - ai_workflows
+      - prompt_templates
+      - context_loading
+      - memory_optimization
+    decision_boundaries:
+      - AI augments engineering judgment and must not replace it.
+    inputs:
+      - prompts
+      - contexts
+      - specifications
+    outputs:
+      - ai_instructions
+      - prompt_patterns
+      - context_profiles
+    definition_of_done:
+      - Context is scoped and relevant.
+      - Outputs are verifiable.
+
+  devops_engineer:
+    title: DevOps Engineer
+    responsibilities:
+      - deployment
+      - automation
+      - environment_management
+      - ci_cd_alignment
+    decision_boundaries:
+      - Atlas does not replace CI/CD systems.
+    inputs:
+      - architecture
+      - deployment_requirements
+    outputs:
+      - deployment_guidance
+      - automation_notes
+      - operational_checklists
+    definition_of_done:
+      - Deployment path is documented and reproducible.
+
+  qa_engineer:
+    title: QA Engineer
+    responsibilities:
+      - test_strategy
+      - verification
+      - quality_gates
+      - regression_review
+    decision_boundaries:
+      - Every implementation must be verifiable.
+    inputs:
+      - specifications
+      - acceptance_criteria
+      - implementation
+    outputs:
+      - test_plan
+      - test_results
+      - quality_findings
+    definition_of_done:
+      - Acceptance criteria are validated.
+      - Quality risks are documented.
+
+  security_engineer:
+    title: Security Engineer
+    responsibilities:
+      - security_review
+      - secret_detection
+      - least_privilege_guidance
+      - threat_review
+    decision_boundaries:
+      - Atlas must never contain secrets or sensitive credentials.
+    inputs:
+      - architecture
+      - implementation
+      - configuration
+    outputs:
+      - security_findings
+      - remediation_guidance
+    definition_of_done:
+      - Secret exposure risks are checked.
+      - Security concerns are traceable.
+
+  reviewer:
+    title: Reviewer
+    responsibilities:
+      - code_review
+      - specification_compliance
+      - architecture_compliance
+      - risk_identification
+    decision_boundaries:
+      - Review must prioritize bugs, regressions, missing tests, and compliance gaps.
+    inputs:
+      - changes
+      - specifications
+      - principles
+    outputs:
+      - findings
+      - open_questions
+      - approval_or_change_request
+    definition_of_done:
+      - Findings are actionable and traceable.
+
+  product_manager:
+    title: Product Manager
+    responsibilities:
+      - product_intent
+      - requirements_clarity
+      - acceptance_criteria
+      - scope_management
+    decision_boundaries:
+      - Business intent must precede implementation.
+    inputs:
+      - vision
+      - stakeholder_needs
+    outputs:
+      - prd
+      - acceptance_criteria
+      - prioritization_notes
+    definition_of_done:
+      - Requirements are clear and testable.
+
+supported_operations:
+  - specification_management
+  - context_management
+  - agent_orchestration
+  - standards_application
+  - pattern_selection
+  - knowledge_lookup
+  - prompt_template_use
+  - validation
+  - project_governance

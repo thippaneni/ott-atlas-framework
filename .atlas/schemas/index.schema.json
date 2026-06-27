@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atlas-framework.local/schemas/index.schema.json",
+  "title": "Atlas Index Schema",
+  "type": "object",
+  "required": [
+    "version",
+    "atlas",
+    "boot",
+    "knowledge_graph",
+    "modules"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "atlas": {
+      "type": "object",
+      "required": [
+        "name"
+      ]
+    },
+    "boot": {
+      "type": "object",
+      "required": [
+        "load_order",
+        "module_discovery"
+      ],
+      "properties": {
+        "load_order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "module_discovery": {
+          "type": "string"
+        }
+      }
+    },
+    "knowledge_graph": {
+      "type": "object",
+      "required": [
+        "nodes",
+        "edges"
+      ],
+      "properties": {
+        "purpose": {
+          "type": "string"
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "modules": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "path",
+          "type"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "required_metadata": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "specification_hierarchy": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "extension_policy": {
+      "type": "object"
+    }
+  }
+}
