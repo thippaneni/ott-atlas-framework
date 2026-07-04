@@ -303,12 +303,47 @@ capabilities:
       - architect
       - reviewer
 
+
+  feature_lifecycle:
+    description: Define, gate, and trace feature work as the fundamental unit of engineering.
+    inputs:
+      - business_need
+      - vision
+      - epic
+      - feature_specification
+    outputs:
+      - feature_package
+      - feature_gate_status
+      - implementation_targets
+      - release_readiness
+    knowledge:
+      standards:
+        - standards/feature-lifecycle.md
+      rules:
+        - rules/validation.yaml
+        - rules/naming.yaml
+      templates:
+        - templates/feature-package.md
+      checklists:
+        - checklists/feature-gates.md
+      architecture:
+        - architecture/decisions/ADR-0007-features-are-the-fundamental-unit-of-engineering.md
+    supported_roles:
+      - product
+      - architect
+      - backend
+      - frontend
+      - database
+      - tester
+      - reviewer
+
 agents:
   architect:
     config: agents/architect.yaml
     capabilities:
       - architecture
       - specification
+      - feature_lifecycle
       - reviewing
       - deployment
   backend:
@@ -354,6 +389,7 @@ agents:
     config: agents/product.yaml
     capabilities:
       - specification
+      - feature_lifecycle
 
 supported_operations:
   - specification_management
@@ -370,3 +406,5 @@ supported_operations:
   - review_guidance
   - deployment_guidance
   - project_governance
+  - feature_lifecycle_management
+

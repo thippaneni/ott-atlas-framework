@@ -53,6 +53,7 @@ modules:
       - standards/coding.md
       - standards/database.md
       - standards/documentation.md
+      - standards/feature-lifecycle.md
       - standards/git.md
       - standards/performance.md
       - standards/security.md
@@ -134,6 +135,7 @@ modules:
       - architecture/decisions/ADR-0004-modular-knowledge-architecture.md
       - architecture/decisions/ADR-0005-configuration-over-prompts.md
       - architecture/decisions/ADR-0006-ai-provider-agnostic-framework.md
+      - architecture/decisions/ADR-0007-features-are-the-fundamental-unit-of-engineering.md
 
   knowledge:
     path: knowledge/
@@ -154,6 +156,7 @@ modules:
       - templates/api-contract.md
       - templates/architecture.md
       - templates/domain-model.md
+      - templates/feature-package.md
       - templates/feature-spec.md
       - templates/prd.md
       - templates/srs.md
@@ -166,6 +169,7 @@ modules:
     files:
       - checklists/api.md
       - checklists/database.md
+      - checklists/feature-gates.md
       - checklists/frontend.md
       - checklists/release.md
       - checklists/review.md
@@ -198,6 +202,7 @@ extension_policy:
   projects_may_extend_atlas: true
   extensions_may_modify_core_behavior: false
   custom_modules_registered_through: index.yaml
+
 
 
 

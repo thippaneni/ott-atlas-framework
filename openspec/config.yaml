@@ -39,7 +39,8 @@ rules:
     - Separate Atlas/OpenSpec tasks from HOOS backend and HOOS frontend implementation tasks.
     - Keep tasks small enough to review independently.
     - Include validation and test tasks for implementation changes.
-  spec:
+  specs:
     - Use SHALL for mandatory behavior and SHOULD for recommended behavior.
     - Keep requirements testable and traceable.
     - Identify backend and frontend responsibilities separately when both are affected.
+

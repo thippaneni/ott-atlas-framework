@@ -53,11 +53,14 @@ contexts:
       - principles.md
       - capabilities.yaml
       - standards/documentation.md
+      - standards/feature-lifecycle.md
       - rules/naming.yaml
       - rules/validation.yaml
       - instructions/product.md
       - agents/product.yaml
       - templates/
+      - templates/feature-package.md
+      - checklists/feature-gates.md
     exclude:
       - implementation_only_modules
       - unrelated_deployment_modules
@@ -75,6 +78,7 @@ contexts:
       - standards/database.md
       - standards/security.md
       - standards/testing.md
+      - standards/feature-lifecycle.md
       - rules/api.yaml
       - rules/database.yaml
       - rules/errors.yaml
@@ -85,6 +89,7 @@ contexts:
       - patterns/api-pattern.md
       - patterns/repository.md
       - patterns/specification.md
+      - checklists/feature-gates.md
       - skills/dotnet.md
       - skills/postgres.md
       - skills/testing.md
@@ -106,10 +111,12 @@ contexts:
       - standards/coding.md
       - standards/api.md
       - standards/testing.md
+      - standards/feature-lifecycle.md
       - rules/api.yaml
       - rules/errors.yaml
       - rules/validation.yaml
       - patterns/vertical-slice.md
+      - checklists/feature-gates.md
       - skills/angular.md
       - skills/testing.md
       - instructions/frontend.md
@@ -162,6 +169,7 @@ contexts:
       - rules/security.yaml
       - rules/validation.yaml
       - skills/testing.md
+      - checklists/feature-gates.md
       - instructions/tester.md
       - agents/tester.yaml
       - checklists/
@@ -262,3 +270,4 @@ contexts:
       - provider_specific_core_changes
       - secrets
       - credentials
+
