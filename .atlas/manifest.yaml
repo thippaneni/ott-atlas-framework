@@ -87,4 +87,39 @@ security:
     - secrets
     - certificates
     - sensitive_credentials
+implementation_repositories:
+  hoos_backend:
+    path: hoos/HOOS-Backend
+    responsibility: Home Ownership Operating System backend implementation.
+    stack:
+      - dotnet
+      - postgresql
+      - api
+      - backend_tests
+  hoos_frontend:
+    path: hoos/HOOS-Frontend
+    responsibility: Home Ownership Operating System frontend implementation.
+    stack:
+      - angular
+      - api_integration
+      - frontend_tests
+
+repository_boundaries:
+  atlas_framework:
+    owns:
+      - atlas_framework
+      - openspec_specs
+      - governance
+      - templates
+      - validation
+  hoos_backend:
+    owns:
+      - backend_source_code
+      - backend_tests
+      - backend_infrastructure_for_app
+  hoos_frontend:
+    owns:
+      - frontend_source_code
+      - frontend_tests
+      - frontend_assets
 

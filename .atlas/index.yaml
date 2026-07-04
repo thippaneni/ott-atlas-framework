@@ -138,7 +138,8 @@ modules:
   knowledge:
     path: knowledge/
     type: domain_knowledge
-    files: []
+    files:
+      - knowledge/hoos-project-topology.md
 
   prompts:
     path: prompts/
@@ -197,5 +198,6 @@ extension_policy:
   projects_may_extend_atlas: true
   extensions_may_modify_core_behavior: false
   custom_modules_registered_through: index.yaml
+
 
 

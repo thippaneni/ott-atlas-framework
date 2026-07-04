@@ -1,20 +1,45 @@
-schema: spec-driven
+﻿schema: spec-driven
 
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
+context: |
+  Atlas is the governing AI-native engineering framework for this workspace.
+  OpenSpec manages specification-driven changes for the Home Ownership Operating System (HOOS).
 
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+  Repository layout:
+  - Atlas framework and OpenSpec specs: D:\Projects\SAAS\ott-atlas-framework
+  - HOOS backend implementation repo: D:\Projects\SAAS\ott-atlas-framework\hoos\HOOS-Backend
+  - HOOS frontend implementation repo: D:\Projects\SAAS\ott-atlas-framework\hoos\HOOS-Frontend
+
+  Implementation boundary:
+  - Keep Atlas framework, OpenSpec specs, governance, templates, and validation in this repository.
+  - Put backend application code in hoos/HOOS-Backend.
+  - Put frontend application code in hoos/HOOS-Frontend.
+  - Do not place HOOS application source code directly in the Atlas framework root.
+
+  Tech stack:
+  - Backend: .NET
+  - Frontend: Angular
+  - Database: PostgreSQL
+  - Cloud: AWS
+  - AI: OpenAI-compatible workflows while preserving Atlas provider agnosticism
+  - Automation and validation: Python
+
+  Atlas guidance:
+  - Specifications are the source of truth.
+  - Documentation precedes implementation.
+  - AI assists engineering; engineers decide.
+  - Every implementation must be traceable and verifiable.
+  - Load only task-relevant Atlas context.
+
+rules:
+  proposal:
+    - Include a clear problem statement and non-goals.
+    - Identify whether the change affects backend, frontend, database, architecture, AI workflows, or documentation.
+    - Reference the target implementation repository when implementation is expected.
+  tasks:
+    - Separate Atlas/OpenSpec tasks from HOOS backend and HOOS frontend implementation tasks.
+    - Keep tasks small enough to review independently.
+    - Include validation and test tasks for implementation changes.
+  spec:
+    - Use SHALL for mandatory behavior and SHOULD for recommended behavior.
+    - Keep requirements testable and traceable.
+    - Identify backend and frontend responsibilities separately when both are affected.
