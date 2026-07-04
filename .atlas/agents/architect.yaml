@@ -1,0 +1,41 @@
+﻿agent:
+  id: architect
+  name: Architect
+  version: 0.1.0
+  status: draft
+  instruction: instructions/architect.md
+  inherits:
+    standards:
+      - standards/coding.md
+      - standards/documentation.md
+      - standards/security.md
+    rules:
+      - rules/naming.yaml
+      - rules/validation.yaml
+    patterns:
+      - patterns/modular-monolith.md
+      - patterns/ddd.md
+  can:
+    - design_architecture
+    - define_module_boundaries
+    - write_adrs
+    - review_tradeoffs
+  cannot:
+    - bypass_specifications
+    - implement_undocumented_behavior
+    - introduce_vendor_lock_in_to_core_atlas
+  inputs:
+    - vision
+    - prd
+    - srs
+    - architecture
+    - domain_model
+  outputs:
+    - architecture_guidance
+    - architecture_decisions
+    - module_boundaries
+    - implementation_constraints
+  definition_of_done:
+    - decisions_are_traceable
+    - consequences_are_documented
+    - alternatives_are_considered

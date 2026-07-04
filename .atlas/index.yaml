@@ -1,4 +1,4 @@
-version: 1.0.0
+﻿version: 1.0.0
 atlas:
   name: Atlas
   specification: ATS.md
@@ -6,22 +6,35 @@ atlas:
 boot:
   load_order:
     - manifest.yaml
+    - ATS.md
     - principles.md
-    - capabilities.yaml
-    - contexts.yaml
     - index.yaml
+    - contexts.yaml
+    - capabilities.yaml
   module_discovery: index.yaml
 
 knowledge_graph:
   purpose: Defines the Atlas knowledge graph for module discovery, dependencies, load order, and context resolution.
-  nodes:
-    - skills
-    - patterns
+  dependency_order:
+    - knowledge
+    - standards
     - rules
+    - patterns
+    - skills
     - instructions
-    - specifications
+    - agents
+  nodes:
+    - standards
+    - rules
+    - patterns
+    - skills
+    - instructions
+    - agents
     - templates
+    - checklists
     - architecture
+    - knowledge
+    - specifications
   edges:
     - depends_on
     - implements
@@ -29,93 +42,135 @@ knowledge_graph:
     - extends
     - validates
     - replaces
+    - uses
 
 modules:
-  instructions:
-    path: instructions/
-    type: governance
-    required_metadata:
-      - purpose
-      - scope
-      - version
-  patterns:
-    path: patterns/
-    type: development_pattern
-    required_metadata:
-      - purpose
-      - examples
-      - anti_patterns
-      - version
-  rules:
-    path: rules/
-    type: validation_rule
-    required_metadata:
-      - purpose
-      - scope
-      - references
-      - version
-  skills:
-    path: skills/
-    type: capability
-    required_metadata:
-      - purpose
-      - best_practices
-      - references
-      - version
   standards:
     path: standards/
     type: engineering_standard
-    required_metadata:
-      - purpose
-      - scope
-      - version
+    files:
+      - standards/api.md
+      - standards/coding.md
+      - standards/database.md
+      - standards/documentation.md
+      - standards/git.md
+      - standards/performance.md
+      - standards/security.md
+      - standards/testing.md
+
+  rules:
+    path: rules/
+    type: validation_rule
+    files:
+      - rules/api.yaml
+      - rules/database.yaml
+      - rules/errors.yaml
+      - rules/logging.yaml
+      - rules/naming.yaml
+      - rules/security.yaml
+      - rules/validation.yaml
+
+  patterns:
+    path: patterns/
+    type: development_pattern
+    files:
+      - patterns/api-pattern.md
+      - patterns/ddd.md
+      - patterns/domain-events.md
+      - patterns/factory.md
+      - patterns/modular-monolith.md
+      - patterns/repository.md
+      - patterns/result-pattern.md
+      - patterns/specification.md
+      - patterns/vertical-slice.md
+
+  skills:
+    path: skills/
+    type: capability_skill
+    files:
+      - skills/angular.md
+      - skills/aws.md
+      - skills/dotnet.md
+      - skills/openai.md
+      - skills/postgres.md
+      - skills/python.md
+      - skills/testing.md
+
+  instructions:
+    path: instructions/
+    type: role_instruction
+    files:
+      - instructions/ai.md
+      - instructions/architect.md
+      - instructions/backend.md
+      - instructions/database.md
+      - instructions/devops.md
+      - instructions/frontend.md
+      - instructions/product.md
+      - instructions/reviewer.md
+      - instructions/tester.md
+
+  agents:
+    path: agents/
+    type: ai_agent_config
+    files:
+      - agents/ai.yaml
+      - agents/architect.yaml
+      - agents/backend.yaml
+      - agents/database.yaml
+      - agents/devops.yaml
+      - agents/frontend.yaml
+      - agents/product.yaml
+      - agents/reviewer.yaml
+      - agents/tester.yaml
+
   architecture:
     path: architecture/
     type: architecture_knowledge
-    required_metadata:
-      - purpose
-      - decisions
-      - references
-      - version
+    files:
+      - architecture/decisions/ADR-0001-adopt-specification-driven-software-development.md
+      - architecture/decisions/ADR-0002-atlas-shall-be-ai-first.md
+      - architecture/decisions/ADR-0003-knowledge-driven-context-loading.md
+      - architecture/decisions/ADR-0004-modular-knowledge-architecture.md
+      - architecture/decisions/ADR-0005-configuration-over-prompts.md
+      - architecture/decisions/ADR-0006-ai-provider-agnostic-framework.md
+
   knowledge:
     path: knowledge/
     type: domain_knowledge
-    required_metadata:
-      - purpose
-      - scope
-      - references
-      - version
-  agents:
-    path: agents/
-    type: ai_agent
-    required_metadata:
-      - responsibilities
-      - decision_boundaries
-      - inputs
-      - outputs
-      - definition_of_done
+    files: []
+
   prompts:
     path: prompts/
     type: prompt_template
-    required_metadata:
-      - purpose
-      - inputs
-      - outputs
-      - version
+    files: []
+
   templates:
     path: templates/
     type: artifact_template
-    required_metadata:
-      - purpose
-      - scope
-      - version
+    files:
+      - templates/adr.md
+      - templates/api-contract.md
+      - templates/architecture.md
+      - templates/domain-model.md
+      - templates/feature-spec.md
+      - templates/prd.md
+      - templates/srs.md
+      - templates/test-plan.md
+      - templates/vision.md
+
   checklists:
     path: checklists/
     type: verification_checklist
-    required_metadata:
-      - purpose
-      - scope
-      - version
+    files:
+      - checklists/api.md
+      - checklists/database.md
+      - checklists/frontend.md
+      - checklists/release.md
+      - checklists/review.md
+      - checklists/security.md
+      - checklists/specification.md
+      - checklists/testing.md
 
 specification_hierarchy:
   - vision
@@ -129,7 +184,18 @@ specification_hierarchy:
   - task
   - implementation
 
+technology_stack:
+  backend: dotnet
+  frontend: angular
+  database: postgresql
+  cloud: aws
+  ai: openai
+  automation: python
+  testing: multi_layer
+
 extension_policy:
   projects_may_extend_atlas: true
   extensions_may_modify_core_behavior: false
   custom_modules_registered_through: index.yaml
+
+

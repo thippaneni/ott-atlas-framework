@@ -1,109 +1,264 @@
-version: 1.0.0
+﻿version: 1.0.0
 purpose: Defines reusable context-loading profiles for selective Atlas context loading.
 
 rules:
   selective_loading_required: true
   no_unrelated_modules: true
-  default_base_context:
+  base_context:
     - manifest.yaml
+    - ATS.md
     - principles.md
+    - index.yaml
     - capabilities.yaml
+  load_order:
+    - base_context
+    - architecture_decisions
+    - standards
+    - rules
+    - patterns
+    - skills
+    - instructions
+    - agents
+    - task_specifications
 
 contexts:
-  backend:
-    description: Backend API and service implementation context.
+  architecture:
+    description: Architecture, module boundaries, ADRs, constraints, and tradeoff analysis.
     include:
       - manifest.yaml
+      - ATS.md
+      - principles.md
+      - index.yaml
+      - capabilities.yaml
+      - architecture/decisions/
+      - standards/coding.md
+      - standards/documentation.md
+      - standards/security.md
+      - rules/naming.yaml
+      - rules/validation.yaml
+      - patterns/ddd.md
+      - patterns/modular-monolith.md
+      - instructions/architect.md
+      - agents/architect.yaml
+    exclude:
+      - unrelated_feature_implementation
+      - secrets
+      - credentials
+
+  specification:
+    description: Product intent, PRD, SRS, feature specifications, stories, tasks, and acceptance criteria.
+    include:
+      - manifest.yaml
+      - ATS.md
       - principles.md
       - capabilities.yaml
-      - instructions/backend.md
-      - patterns/backend/
+      - standards/documentation.md
+      - rules/naming.yaml
+      - rules/validation.yaml
+      - instructions/product.md
+      - agents/product.yaml
+      - templates/
+    exclude:
+      - implementation_only_modules
+      - unrelated_deployment_modules
+
+  backend:
+    description: .NET backend API and service implementation context.
+    include:
+      - manifest.yaml
+      - ATS.md
+      - principles.md
+      - capabilities.yaml
+      - architecture/decisions/
+      - standards/coding.md
+      - standards/api.md
+      - standards/database.md
+      - standards/security.md
+      - standards/testing.md
       - rules/api.yaml
+      - rules/database.yaml
+      - rules/errors.yaml
       - rules/security.yaml
-      - standards/backend/
-      - architecture/
-      - specifications/feature/
+      - rules/validation.yaml
+      - patterns/vertical-slice.md
+      - patterns/result-pattern.md
+      - patterns/api-pattern.md
+      - patterns/repository.md
+      - patterns/specification.md
+      - skills/dotnet.md
+      - skills/postgres.md
+      - skills/testing.md
+      - instructions/backend.md
+      - agents/backend.yaml
     exclude:
       - unrelated_frontend_modules
       - unrelated_deployment_modules
+      - secrets
+      - credentials
 
   frontend:
-    description: Frontend implementation and user experience context.
+    description: Angular frontend implementation and user experience context.
     include:
       - manifest.yaml
+      - ATS.md
       - principles.md
       - capabilities.yaml
+      - standards/coding.md
+      - standards/api.md
+      - standards/testing.md
+      - rules/api.yaml
+      - rules/errors.yaml
+      - rules/validation.yaml
+      - patterns/vertical-slice.md
+      - skills/angular.md
+      - skills/testing.md
       - instructions/frontend.md
-      - patterns/frontend/
-      - rules/frontend.yaml
-      - standards/frontend/
-      - specifications/feature/
-      - templates/ui/
+      - agents/frontend.yaml
     exclude:
       - unrelated_backend_internals
       - unrelated_deployment_modules
+      - secrets
+      - credentials
 
-  review:
-    description: Change review, quality, compliance, and regression context.
+  database:
+    description: PostgreSQL schema, migration, indexing, query, and integrity context.
     include:
       - manifest.yaml
+      - ATS.md
       - principles.md
       - capabilities.yaml
-      - standards/
-      - rules/
-      - checklists/
-      - architecture/
-      - specifications/
-    exclude:
-      - unrelated_domain_knowledge
-
-  architecture:
-    description: Architecture, decisions, constraints, and traceability context.
-    include:
-      - manifest.yaml
-      - principles.md
-      - architecture/
-      - standards/
-      - patterns/
-      - specifications/architecture/
-      - knowledge/
-    exclude:
-      - unrelated_implementation_details
-
-  testing:
-    description: Verification, acceptance criteria, and test planning context.
-    include:
-      - manifest.yaml
-      - principles.md
-      - standards/testing/
-      - rules/testing.yaml
-      - checklists/testing/
-      - specifications/
+      - architecture/decisions/
+      - standards/database.md
+      - standards/security.md
+      - standards/performance.md
+      - standards/testing.md
+      - rules/database.yaml
+      - rules/security.yaml
+      - rules/validation.yaml
+      - patterns/repository.md
+      - patterns/specification.md
+      - patterns/modular-monolith.md
+      - skills/postgres.md
+      - skills/testing.md
+      - instructions/database.md
+      - agents/database.yaml
     exclude:
       - unrelated_ui_assets
+      - secrets
+      - credentials
 
-  security:
-    description: Security review, secrets policy, and secure defaults context.
+  testing:
+    description: Verification, acceptance criteria, regression risk, and test planning context.
     include:
       - manifest.yaml
+      - ATS.md
       - principles.md
+      - capabilities.yaml
+      - standards/testing.md
+      - standards/api.md
+      - standards/security.md
+      - rules/api.yaml
+      - rules/errors.yaml
       - rules/security.yaml
-      - standards/security/
-      - checklists/security/
-      - architecture/
+      - rules/validation.yaml
+      - skills/testing.md
+      - instructions/tester.md
+      - agents/tester.yaml
+      - checklists/
+    exclude:
+      - unrelated_deployment_modules
+      - secrets
+      - credentials
+
+  review:
+    description: Change review, quality, compliance, security, and regression context.
+    include:
+      - manifest.yaml
+      - ATS.md
+      - principles.md
+      - capabilities.yaml
+      - architecture/decisions/
+      - standards/
+      - rules/
+      - patterns/
+      - skills/testing.md
+      - instructions/reviewer.md
+      - agents/reviewer.yaml
+      - checklists/
+    exclude:
+      - unrelated_domain_knowledge
+      - secrets
+      - credentials
+
+  security:
+    description: Security review, secrets policy, least privilege, and secure defaults context.
+    include:
+      - manifest.yaml
+      - ATS.md
+      - principles.md
+      - capabilities.yaml
+      - architecture/decisions/ADR-0006-ai-provider-agnostic-framework.md
+      - standards/security.md
+      - standards/api.md
+      - standards/database.md
+      - rules/security.yaml
+      - rules/api.yaml
+      - rules/database.yaml
+      - rules/logging.yaml
+      - skills/aws.md
+      - skills/openai.md
+      - instructions/reviewer.md
+      - agents/reviewer.yaml
     exclude:
       - secrets
       - credentials
+      - sensitive_credentials
       - unrelated_non_security_modules
 
   deployment:
-    description: Deployment, operations, reproducibility, and automation context.
+    description: AWS deployment, operations, reproducibility, automation, and observability context.
     include:
       - manifest.yaml
+      - ATS.md
       - principles.md
-      - architecture/
-      - standards/deployment/
-      - checklists/deployment/
-      - specifications/deployment/
+      - capabilities.yaml
+      - architecture/decisions/
+      - standards/security.md
+      - standards/performance.md
+      - standards/git.md
+      - rules/security.yaml
+      - rules/logging.yaml
+      - rules/validation.yaml
+      - skills/aws.md
+      - skills/python.md
+      - skills/testing.md
+      - instructions/devops.md
+      - agents/devops.yaml
     exclude:
       - unrelated_feature_details
+      - secrets
+      - credentials
+
+  ai_engineering:
+    description: AI workflows, OpenAI integration, prompt orchestration, context loading, and evaluation.
+    include:
+      - manifest.yaml
+      - ATS.md
+      - principles.md
+      - capabilities.yaml
+      - architecture/decisions/ADR-0005-configuration-over-prompts.md
+      - architecture/decisions/ADR-0006-ai-provider-agnostic-framework.md
+      - standards/documentation.md
+      - standards/security.md
+      - rules/security.yaml
+      - rules/validation.yaml
+      - skills/openai.md
+      - skills/python.md
+      - skills/testing.md
+      - instructions/ai.md
+      - agents/ai.yaml
+      - prompts/
+    exclude:
+      - provider_specific_core_changes
+      - secrets
+      - credentials

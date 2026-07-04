@@ -1,77 +1,46 @@
-{
+﻿{
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://atlas-framework.local/schemas/capabilities.schema.json",
   "title": "Atlas Capabilities Schema",
   "type": "object",
-  "required": [
-    "version",
-    "purpose",
-    "agents",
-    "supported_operations"
-  ],
+  "required": ["version", "purpose", "capabilities", "agents", "supported_operations"],
   "additionalProperties": true,
   "properties": {
-    "version": {
-      "type": "string"
-    },
-    "purpose": {
-      "type": "string"
+    "version": { "type": "string" },
+    "purpose": { "type": "string" },
+    "capabilities": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["description", "inputs", "outputs", "knowledge", "supported_roles"],
+        "properties": {
+          "description": { "type": "string", "minLength": 1 },
+          "inputs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "outputs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "knowledge": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          },
+          "supported_roles": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+        }
+      }
     },
     "agents": {
       "type": "object",
       "minProperties": 1,
       "additionalProperties": {
         "type": "object",
-        "required": [
-          "title",
-          "responsibilities",
-          "decision_boundaries",
-          "inputs",
-          "outputs",
-          "definition_of_done"
-        ],
+        "required": ["config", "capabilities"],
         "properties": {
-          "title": {
-            "type": "string"
-          },
-          "responsibilities": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "decision_boundaries": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "inputs": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "outputs": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "definition_of_done": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
+          "config": { "type": "string", "pattern": "^agents/.+\\.yaml$" },
+          "capabilities": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
         }
       }
     },
-    "supported_operations": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    }
+    "supported_operations": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
   }
 }
