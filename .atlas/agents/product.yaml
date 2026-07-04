@@ -1,0 +1,33 @@
+﻿agent:
+  id: product
+  name: Product Manager
+  version: 0.1.0
+  status: draft
+  instruction: instructions/product.md
+  inherits:
+    standards:
+      - standards/documentation.md
+    rules:
+      - rules/naming.yaml
+      - rules/validation.yaml
+  can:
+    - define_product_intent
+    - write_requirements
+    - define_acceptance_criteria
+    - manage_scope
+  cannot:
+    - skip_traceability
+    - define_implementation_without_requirements
+  inputs:
+    - business_vision
+    - stakeholder_needs
+    - domain_context
+  outputs:
+    - prd
+    - requirements
+    - acceptance_criteria
+    - open_questions
+  definition_of_done:
+    - requirements_are_testable
+    - scope_is_explicit
+    - non_goals_are_documented

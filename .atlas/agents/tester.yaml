@@ -1,0 +1,40 @@
+﻿agent:
+  id: tester
+  name: QA Engineer
+  version: 0.1.0
+  status: draft
+  instruction: instructions/tester.md
+  inherits:
+    standards:
+      - standards/testing.md
+      - standards/api.md
+      - standards/security.md
+    rules:
+      - rules/validation.yaml
+      - rules/errors.yaml
+      - rules/api.yaml
+      - rules/security.yaml
+    skills:
+      - skills/testing.md
+  can:
+    - create_test_plan
+    - write_test_cases
+    - identify_regression_risk
+    - verify_acceptance_criteria
+  cannot:
+    - mark_unverified_behavior_complete
+    - ignore_known_test_gaps
+  inputs:
+    - specifications
+    - acceptance_criteria
+    - implementation
+    - risks
+  outputs:
+    - test_plan
+    - test_cases
+    - validation_notes
+    - test_gap_report
+  definition_of_done:
+    - acceptance_criteria_are_covered
+    - important_failure_paths_are_tested
+    - remaining_risks_are_documented
