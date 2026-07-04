@@ -1,0 +1,26 @@
+﻿rule:
+  id: errors
+  name: Error Handling Rules
+  version: 0.1.0
+  status: draft
+  purpose: Ensure errors are predictable, actionable, and safe.
+  applies_to:
+    - api_errors
+    - domain_errors
+    - validation_errors
+    - system_errors
+  requirements:
+    - Error handling must distinguish validation, domain, authorization, not found, conflict, and system failures where applicable.
+    - User-facing errors must be understandable and must not expose internals.
+    - Internal errors must preserve enough diagnostic context for troubleshooting.
+    - Expected failures must be represented explicitly instead of relying on generic exceptions where practical.
+    - Error contracts must be documented for APIs and integrations.
+  prohibited:
+    - swallowing errors silently
+    - returning stack traces to clients
+    - using one generic error for all failure modes
+    - exposing secrets or sensitive implementation details in errors
+  validation:
+    - Confirm important failure paths are tested.
+    - Confirm error responses match documented contracts.
+    - Confirm logs preserve diagnostic context without leaking sensitive data.

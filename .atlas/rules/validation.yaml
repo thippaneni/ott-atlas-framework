@@ -1,0 +1,30 @@
+﻿rule:
+  id: validation
+  name: Validation Rules
+  version: 0.1.0
+  status: draft
+  purpose: Ensure inputs, specifications, references, and generated artifacts are verifiable.
+  applies_to:
+    - user_inputs
+    - api_inputs
+    - configuration
+    - yaml_files
+    - schemas
+    - specifications
+    - generated_artifacts
+  requirements:
+    - Inputs must be validated at system boundaries.
+    - Required Atlas files must be present before dependent work begins.
+    - YAML files must conform to their schemas when schemas exist.
+    - References must resolve to existing files, modules, or documented external resources.
+    - Dependency graphs must avoid circular references unless explicitly documented and approved.
+    - Implementation must be validated against acceptance criteria and specifications.
+  prohibited:
+    - accepting unvalidated external input
+    - ignoring schema validation failures
+    - broken internal references
+    - undocumented circular dependencies
+  validation:
+    - Run schema validation where available.
+    - Check required files and references.
+    - Confirm implementation traces back to specifications.

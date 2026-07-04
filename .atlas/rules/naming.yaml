@@ -1,0 +1,27 @@
+﻿rule:
+  id: naming
+  name: Naming Rules
+  version: 0.1.0
+  status: draft
+  purpose: Define consistent naming across Atlas projects.
+  applies_to:
+    - files
+    - directories
+    - modules
+    - specifications
+    - code
+    - tests
+  requirements:
+    - Names must be clear, descriptive, and domain-aligned.
+    - Names must avoid unexplained abbreviations.
+    - File and directory names must use lowercase kebab-case unless a platform convention requires otherwise.
+    - YAML keys must use snake_case.
+    - Markdown headings must use title case for document titles and sentence case for sections where practical.
+    - Code symbols must follow the language and framework conventions of the project.
+  prohibited:
+    - vague names such as misc, stuff, temp, helpers, or utils without a specific qualifier
+    - names that encode implementation details where domain language is available
+    - names that conflict with existing module names
+  validation:
+    - Check new files and modules for naming consistency.
+    - Confirm names map to documented domain or framework concepts.

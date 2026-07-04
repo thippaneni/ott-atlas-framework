@@ -1,0 +1,27 @@
+﻿rule:
+  id: database
+  name: Database Rules
+  version: 0.1.0
+  status: draft
+  purpose: Protect data integrity, traceability, and maintainability.
+  applies_to:
+    - schemas
+    - migrations
+    - indexes
+    - queries
+    - persistence_models
+  requirements:
+    - Database changes must trace to a domain model, architecture decision, or feature specification.
+    - Migrations must be reviewable, reproducible, and ordered.
+    - Data integrity must be enforced with appropriate constraints.
+    - Indexes must support known access patterns or documented performance requirements.
+    - Sensitive data handling must be documented.
+  prohibited:
+    - destructive migrations without explicit approval and rollback guidance
+    - storing secrets or credentials in the database schema or Atlas files
+    - schema changes that are not connected to documented requirements
+    - unbounded queries on critical paths without review
+  validation:
+    - Confirm migrations match the domain model and feature specification.
+    - Confirm constraints and indexes are intentional.
+    - Confirm data exposure risks are reviewed.

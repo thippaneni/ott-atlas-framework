@@ -1,0 +1,27 @@
+﻿rule:
+  id: api
+  name: API Rules
+  version: 0.1.0
+  status: draft
+  purpose: Ensure API behavior is specified, consistent, and verifiable.
+  applies_to:
+    - api_contracts
+    - endpoints
+    - request_models
+    - response_models
+    - errors
+  requirements:
+    - API behavior must trace to an approved feature specification or API contract.
+    - Endpoints must use consistent resource naming and HTTP semantics.
+    - Requests must validate inputs at the boundary.
+    - Responses must use predictable shapes for success and failure cases.
+    - Errors must be actionable and must not expose internal implementation details.
+    - Authentication and authorization requirements must be explicit.
+  prohibited:
+    - undocumented endpoints
+    - inconsistent error response formats
+    - leaking stack traces, secrets, or internal identifiers to clients
+    - bypassing authorization checks
+  validation:
+    - Confirm every endpoint has documented purpose, inputs, outputs, errors, and authorization behavior.
+    - Confirm tests cover success, validation failure, and authorization failure paths.

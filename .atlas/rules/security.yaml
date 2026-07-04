@@ -1,0 +1,27 @@
+﻿rule:
+  id: security
+  name: Security Rules
+  version: 0.1.0
+  status: draft
+  purpose: Keep Atlas projects secure by default.
+  applies_to:
+    - source_code
+    - configuration
+    - documentation
+    - infrastructure
+    - automation
+  requirements:
+    - Secrets, passwords, API keys, certificates, and sensitive credentials must never be committed.
+    - Least privilege must be applied to users, services, roles, and automation.
+    - Inputs must be validated at trust boundaries.
+    - Authentication and authorization behavior must be documented and tested.
+    - Security-sensitive changes must receive focused review.
+  prohibited:
+    - hardcoded credentials
+    - logging secrets or sensitive credentials
+    - disabling security controls without documented approval
+    - exposing internal errors to users
+  validation:
+    - Check changes for secrets and sensitive values.
+    - Confirm access control behavior is documented and tested.
+    - Confirm security risks and mitigations are recorded when relevant.

@@ -1,0 +1,26 @@
+﻿rule:
+  id: logging
+  name: Logging Rules
+  version: 0.1.0
+  status: draft
+  purpose: Make system behavior observable without exposing sensitive data.
+  applies_to:
+    - application_logs
+    - audit_logs
+    - error_logs
+    - diagnostics
+  requirements:
+    - Logs must support debugging, operations, and audit needs where relevant.
+    - Log messages must be clear and actionable.
+    - Important state transitions and failures must be observable.
+    - Correlation identifiers should be used for request or workflow tracing where applicable.
+    - Log levels must be used consistently.
+  prohibited:
+    - logging passwords, API keys, tokens, certificates, or sensitive credentials
+    - excessive noisy logs on normal paths
+    - vague messages that do not help diagnosis
+    - using logs as the only validation mechanism
+  validation:
+    - Confirm sensitive values are not logged.
+    - Confirm failure paths include useful diagnostic context.
+    - Confirm logging volume is appropriate for expected usage.
