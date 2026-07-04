@@ -1,61 +1,108 @@
-version: 1.0.0
-purpose: Defines AI roles, skills, responsibilities, and supported operations.
+﻿version: 1.0.0
+purpose: Defines Atlas capabilities independently from agent personas.
 
-agents:
-  architect:
-    title: Architect
-    responsibilities:
-      - architecture
-      - solution_design
-      - architectural_decision_traceability
-      - specification_alignment
-    decision_boundaries:
-      - Must follow approved specifications and architecture decisions.
-      - Must record architectural tradeoffs.
+capabilities:
+  architecture:
+    description: Define architecture, module boundaries, dependencies, and ADRs.
     inputs:
       - vision
       - prd
       - srs
-      - architecture
+      - domain_model
+      - constraints
     outputs:
-      - architecture_decisions
-      - design_guidance
+      - architecture_guidance
+      - adrs
+      - module_boundaries
       - implementation_constraints
-    definition_of_done:
-      - Decisions are traceable.
-      - Dependencies and constraints are documented.
+    knowledge:
+      standards:
+        - standards/coding.md
+        - standards/documentation.md
+        - standards/security.md
+      rules:
+        - rules/naming.yaml
+        - rules/validation.yaml
+      patterns:
+        - patterns/modular-monolith.md
+        - patterns/ddd.md
+      instructions:
+        - instructions/architect.md
+    supported_roles:
+      - architect
+      - reviewer
 
-  backend_engineer:
-    title: Backend Engineer
-    responsibilities:
-      - api_design
-      - service_implementation
-      - business_rules
-      - backend_testing
-    decision_boundaries:
-      - Must not implement undocumented behavior.
-      - Must keep implementation verifiable.
+  specification:
+    description: Produce and refine vision, PRD, SRS, feature, story, and task specifications.
+    inputs:
+      - business_vision
+      - stakeholder_needs
+      - domain_context
+      - constraints
+    outputs:
+      - prd
+      - srs
+      - feature_specification
+      - acceptance_criteria
+      - open_questions
+    knowledge:
+      standards:
+        - standards/documentation.md
+      rules:
+        - rules/naming.yaml
+        - rules/validation.yaml
+      instructions:
+        - instructions/product.md
+    supported_roles:
+      - product
+      - architect
+      - reviewer
+
+  backend:
+    description: Implement .NET backend APIs, domain logic, persistence, validation, and tests.
     inputs:
       - feature_specification
       - api_contract
+      - domain_model
       - database_design
     outputs:
       - backend_code
+      - api_endpoints
       - tests
-      - implementation_notes
-    definition_of_done:
-      - Behavior matches specification.
-      - Tests cover business rules.
+      - migration_notes
+    knowledge:
+      standards:
+        - standards/coding.md
+        - standards/api.md
+        - standards/database.md
+        - standards/security.md
+        - standards/testing.md
+      rules:
+        - rules/api.yaml
+        - rules/database.yaml
+        - rules/errors.yaml
+        - rules/security.yaml
+        - rules/validation.yaml
+      patterns:
+        - patterns/vertical-slice.md
+        - patterns/result-pattern.md
+        - patterns/api-pattern.md
+        - patterns/repository.md
+        - patterns/specification.md
+      skills:
+        - skills/dotnet.md
+        - skills/postgres.md
+        - skills/testing.md
+      instructions:
+        - instructions/backend.md
+    supported_roles:
+      - backend
+      - database
+      - tester
+      - reviewer
 
-  frontend_engineer:
-    title: Frontend Engineer
-    responsibilities:
-      - user_interface
-      - user_experience
-      - frontend_state
-      - frontend_testing
-    decision_boundaries:
-      - Must follow UI design and feature specification.
+  frontend:
+    description: Implement Angular UI, routing, forms, API integration, state, and frontend tests.
     inputs:
       - feature_specification
       - ui_design
@@ -64,157 +111,262 @@ agents:
       - frontend_code
       - tests
       - accessibility_notes
-    definition_of_done:
-      - UI behavior matches specification.
-      - User flows are verified.
+      - ui_behavior_notes
+    knowledge:
+      standards:
+        - standards/coding.md
+        - standards/api.md
+        - standards/testing.md
+      rules:
+        - rules/api.yaml
+        - rules/errors.yaml
+        - rules/validation.yaml
+      patterns:
+        - patterns/vertical-slice.md
+      skills:
+        - skills/angular.md
+        - skills/testing.md
+      instructions:
+        - instructions/frontend.md
+    supported_roles:
+      - frontend
+      - tester
+      - reviewer
 
-  database_engineer:
-    title: Database Engineer
-    responsibilities:
-      - schema_design
-      - indexing
-      - data_integrity
-      - query_performance
-    decision_boundaries:
-      - Must preserve domain model intent and data constraints.
+  database:
+    description: Design PostgreSQL schemas, migrations, indexes, query behavior, and data integrity rules.
     inputs:
       - domain_model
       - database_design
+      - access_patterns
+      - performance_requirements
     outputs:
-      - schema_changes
-      - migration_notes
-      - performance_guidance
-    definition_of_done:
-      - Data model is traceable to specifications.
-      - Integrity constraints are documented.
+      - schema_guidance
+      - migrations
+      - indexing_guidance
+      - query_review_notes
+    knowledge:
+      standards:
+        - standards/database.md
+        - standards/security.md
+        - standards/performance.md
+        - standards/testing.md
+      rules:
+        - rules/database.yaml
+        - rules/security.yaml
+        - rules/validation.yaml
+      patterns:
+        - patterns/repository.md
+        - patterns/specification.md
+        - patterns/modular-monolith.md
+      skills:
+        - skills/postgres.md
+        - skills/testing.md
+      instructions:
+        - instructions/database.md
+    supported_roles:
+      - database
+      - backend
+      - reviewer
 
-  ai_engineer:
-    title: AI Engineer
-    responsibilities:
-      - ai_workflows
-      - prompt_templates
-      - context_loading
-      - memory_optimization
-    decision_boundaries:
-      - AI augments engineering judgment and must not replace it.
+  testing:
+    description: Verify behavior against specifications, acceptance criteria, and risk areas.
+    inputs:
+      - specifications
+      - acceptance_criteria
+      - implementation
+      - risk_notes
+    outputs:
+      - test_plan
+      - test_cases
+      - validation_notes
+      - test_gap_report
+    knowledge:
+      standards:
+        - standards/testing.md
+        - standards/api.md
+        - standards/security.md
+      rules:
+        - rules/api.yaml
+        - rules/errors.yaml
+        - rules/security.yaml
+        - rules/validation.yaml
+      skills:
+        - skills/testing.md
+      instructions:
+        - instructions/tester.md
+    supported_roles:
+      - tester
+      - reviewer
+      - backend
+      - frontend
+
+  reviewing:
+    description: Review changes for bugs, regressions, security risks, missing tests, and Atlas compliance.
+    inputs:
+      - diff
+      - specifications
+      - standards
+      - rules
+      - test_results
+    outputs:
+      - findings
+      - open_questions
+      - residual_risks
+      - approval_or_change_request
+    knowledge:
+      standards:
+        - standards/coding.md
+        - standards/documentation.md
+        - standards/api.md
+        - standards/database.md
+        - standards/security.md
+        - standards/testing.md
+        - standards/performance.md
+        - standards/git.md
+      rules:
+        - rules/naming.yaml
+        - rules/api.yaml
+        - rules/database.yaml
+        - rules/security.yaml
+        - rules/logging.yaml
+        - rules/errors.yaml
+        - rules/validation.yaml
+      skills:
+        - skills/testing.md
+      instructions:
+        - instructions/reviewer.md
+    supported_roles:
+      - reviewer
+      - architect
+      - tester
+
+  deployment:
+    description: Define AWS deployment, environment, automation, observability, and operational guidance.
+    inputs:
+      - architecture
+      - deployment_requirements
+      - security_requirements
+      - operational_constraints
+    outputs:
+      - deployment_guidance
+      - automation_notes
+      - environment_checklist
+      - operational_risks
+    knowledge:
+      standards:
+        - standards/security.md
+        - standards/performance.md
+        - standards/git.md
+      rules:
+        - rules/security.yaml
+        - rules/logging.yaml
+        - rules/validation.yaml
+      skills:
+        - skills/aws.md
+        - skills/python.md
+        - skills/testing.md
+      instructions:
+        - instructions/devops.md
+    supported_roles:
+      - devops
+      - architect
+      - reviewer
+
+  ai_engineering:
+    description: Design AI workflows, context loading, prompt templates, structured outputs, and evaluations.
     inputs:
       - prompts
       - contexts
       - specifications
+      - evaluation_criteria
     outputs:
-      - ai_instructions
+      - ai_workflow_guidance
       - prompt_patterns
       - context_profiles
-    definition_of_done:
-      - Context is scoped and relevant.
-      - Outputs are verifiable.
+      - validation_notes
+    knowledge:
+      standards:
+        - standards/documentation.md
+        - standards/security.md
+      rules:
+        - rules/security.yaml
+        - rules/validation.yaml
+      skills:
+        - skills/openai.md
+        - skills/python.md
+        - skills/testing.md
+      instructions:
+        - instructions/ai.md
+    supported_roles:
+      - ai
+      - architect
+      - reviewer
 
-  devops_engineer:
-    title: DevOps Engineer
-    responsibilities:
+agents:
+  architect:
+    config: agents/architect.yaml
+    capabilities:
+      - architecture
+      - specification
+      - reviewing
       - deployment
-      - automation
-      - environment_management
-      - ci_cd_alignment
-    decision_boundaries:
-      - Atlas does not replace CI/CD systems.
-    inputs:
-      - architecture
-      - deployment_requirements
-    outputs:
-      - deployment_guidance
-      - automation_notes
-      - operational_checklists
-    definition_of_done:
-      - Deployment path is documented and reproducible.
-
-  qa_engineer:
-    title: QA Engineer
-    responsibilities:
-      - test_strategy
-      - verification
-      - quality_gates
-      - regression_review
-    decision_boundaries:
-      - Every implementation must be verifiable.
-    inputs:
-      - specifications
-      - acceptance_criteria
-      - implementation
-    outputs:
-      - test_plan
-      - test_results
-      - quality_findings
-    definition_of_done:
-      - Acceptance criteria are validated.
-      - Quality risks are documented.
-
-  security_engineer:
-    title: Security Engineer
-    responsibilities:
-      - security_review
-      - secret_detection
-      - least_privilege_guidance
-      - threat_review
-    decision_boundaries:
-      - Atlas must never contain secrets or sensitive credentials.
-    inputs:
-      - architecture
-      - implementation
-      - configuration
-    outputs:
-      - security_findings
-      - remediation_guidance
-    definition_of_done:
-      - Secret exposure risks are checked.
-      - Security concerns are traceable.
-
+  backend:
+    config: agents/backend.yaml
+    capabilities:
+      - backend
+      - database
+      - testing
+  frontend:
+    config: agents/frontend.yaml
+    capabilities:
+      - frontend
+      - testing
+  database:
+    config: agents/database.yaml
+    capabilities:
+      - database
+      - backend
+      - testing
+  ai:
+    config: agents/ai.yaml
+    capabilities:
+      - ai_engineering
+      - specification
+      - testing
+  devops:
+    config: agents/devops.yaml
+    capabilities:
+      - deployment
+      - reviewing
+  tester:
+    config: agents/tester.yaml
+    capabilities:
+      - testing
+      - reviewing
   reviewer:
-    title: Reviewer
-    responsibilities:
-      - code_review
-      - specification_compliance
-      - architecture_compliance
-      - risk_identification
-    decision_boundaries:
-      - Review must prioritize bugs, regressions, missing tests, and compliance gaps.
-    inputs:
-      - changes
-      - specifications
-      - principles
-    outputs:
-      - findings
-      - open_questions
-      - approval_or_change_request
-    definition_of_done:
-      - Findings are actionable and traceable.
-
-  product_manager:
-    title: Product Manager
-    responsibilities:
-      - product_intent
-      - requirements_clarity
-      - acceptance_criteria
-      - scope_management
-    decision_boundaries:
-      - Business intent must precede implementation.
-    inputs:
-      - vision
-      - stakeholder_needs
-    outputs:
-      - prd
-      - acceptance_criteria
-      - prioritization_notes
-    definition_of_done:
-      - Requirements are clear and testable.
+    config: agents/reviewer.yaml
+    capabilities:
+      - reviewing
+      - architecture
+      - testing
+  product:
+    config: agents/product.yaml
+    capabilities:
+      - specification
 
 supported_operations:
   - specification_management
   - context_management
   - agent_orchestration
   - standards_application
+  - rules_validation
   - pattern_selection
+  - skill_selection
   - knowledge_lookup
   - prompt_template_use
-  - validation
+  - implementation_guidance
+  - testing_guidance
+  - review_guidance
+  - deployment_guidance
   - project_governance
