@@ -148,12 +148,29 @@ modules:
   templates:
     path: templates/
     type: artifact_template
-    files: []
+    files:
+      - templates/adr.md
+      - templates/api-contract.md
+      - templates/architecture.md
+      - templates/domain-model.md
+      - templates/feature-spec.md
+      - templates/prd.md
+      - templates/srs.md
+      - templates/test-plan.md
+      - templates/vision.md
 
   checklists:
     path: checklists/
     type: verification_checklist
-    files: []
+    files:
+      - checklists/api.md
+      - checklists/database.md
+      - checklists/frontend.md
+      - checklists/release.md
+      - checklists/review.md
+      - checklists/security.md
+      - checklists/specification.md
+      - checklists/testing.md
 
 specification_hierarchy:
   - vision
@@ -180,3 +197,5 @@ extension_policy:
   projects_may_extend_atlas: true
   extensions_may_modify_core_behavior: false
   custom_modules_registered_through: index.yaml
+
+

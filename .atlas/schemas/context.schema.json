@@ -1,0 +1,35 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atlas-framework.local/schemas/context.schema.json",
+  "title": "Atlas Contexts Schema",
+  "type": "object",
+  "required": ["version", "purpose", "rules", "contexts"],
+  "additionalProperties": true,
+  "properties": {
+    "version": { "type": "string" },
+    "purpose": { "type": "string" },
+    "rules": {
+      "type": "object",
+      "required": ["selective_loading_required", "no_unrelated_modules", "base_context", "load_order"],
+      "properties": {
+        "selective_loading_required": { "type": "boolean" },
+        "no_unrelated_modules": { "type": "boolean" },
+        "base_context": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "load_order": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+      }
+    },
+    "contexts": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["description", "include", "exclude"],
+        "properties": {
+          "description": { "type": "string", "minLength": 1 },
+          "include": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "exclude": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atlas-framework.local/schemas/agent.schema.json",
+  "title": "Atlas Agent Schema",
+  "type": "object",
+  "required": ["agent"],
+  "additionalProperties": false,
+  "properties": {
+    "agent": {
+      "type": "object",
+      "required": ["id", "name", "version", "status", "instruction", "inherits", "can", "cannot", "inputs", "outputs", "definition_of_done"],
+      "additionalProperties": true,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "status": { "type": "string" },
+        "instruction": { "type": "string", "pattern": "^instructions/.+\\.md$" },
+        "inherits": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "can": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "cannot": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "inputs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "outputs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "definition_of_done": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+      }
+    }
+  }
+}

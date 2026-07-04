@@ -1,4 +1,4 @@
-atlas:
+﻿atlas:
   name: Atlas
   specification: Atlas Technical Specification
   acronym: ATS
@@ -64,14 +64,21 @@ validation:
     - schemas/manifest.schema.json
     - schemas/index.schema.json
     - schemas/capabilities.schema.json
+    - schemas/agent.schema.json
+    - schemas/rule.schema.json
+    - schemas/context.schema.json
   validates:
     - required_files
-    - yaml_schemas
+    - json_schemas
+    - agent_configs
+    - rule_configs
+    - context_profiles
     - references
     - dependencies
     - circular_references
     - version_compatibility
     - broken_links
+    - secret_patterns
 
 security:
   forbidden_content:
@@ -80,3 +87,4 @@ security:
     - secrets
     - certificates
     - sensitive_credentials
+
