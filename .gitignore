@@ -1,6 +1,7 @@
 # Dependencies
 node_modules/
 vendor/
+hoos/
 
 # Build outputs
 dist/
