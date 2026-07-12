@@ -1,4 +1,4 @@
-﻿## Context
+## Context
 
 The attached planning document proposes the Atlas Feature Lifecycle (AFL): every feature should move from business need through specification, design, implementation, tests, review, documentation, and release using consistent gates and feature-scoped artifacts.
 

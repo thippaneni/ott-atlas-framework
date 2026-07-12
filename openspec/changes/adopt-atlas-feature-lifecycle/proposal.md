@@ -1,4 +1,4 @@
-﻿## Why
+## Why
 
 HOOS needs a repeatable feature implementation workflow before backend and frontend development begins. The attached planning document proposes treating each feature as a complete engineering artifact with traceability from business need through release.
 
@@ -21,8 +21,7 @@ This belongs in Atlas because it affects every future HOOS feature and every pro
 
 ### Modified Capabilities
 
-- `specification`: Adds feature package expectations and gate-based readiness criteria for feature specifications.
-- `implementation`: Clarifies that implementation begins only after feature gates are satisfied and targets the relevant HOOS implementation repository.
+None. This is the first OpenSpec capability introduced for Atlas-managed HOOS feature delivery.
 
 ## Impact
 
@@ -32,4 +31,3 @@ This belongs in Atlas because it affects every future HOOS feature and every pro
 - Backend implementation changes should target `hoos/HOOS-Backend`.
 - Frontend implementation changes should target `hoos/HOOS-Frontend`.
 - No application source code is implemented as part of this change.
-

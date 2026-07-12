@@ -1,4 +1,4 @@
-﻿## 1. Atlas Governance
+## 1. Atlas Governance
 
 - [ ] 1.1 Add `standards/feature-lifecycle.md` defining AFL stages, gates, artifacts, and state machine.
 - [ ] 1.2 Add ADR-0007 documenting features as the fundamental unit of engineering.
