@@ -19,18 +19,18 @@ This foundation defines conceptual architecture only. Code-level architecture wi
 
 ## Initial Conceptual Modules
 
-| Module | Responsibility | Expected Repo Impact |
-| ------ | -------------- | -------------------- |
-| Identity and Access | Users, roles, sessions, authorization | Backend + Frontend |
-| Borrower Profile | Borrower personal, income, and obligation profile | Backend + Frontend |
-| Loan Application | Application lifecycle and status | Backend + Frontend |
-| Eligibility Intelligence | Loan readiness and eligibility calculations | Backend primarily |
-| Property and Purchase Details | Property data and purchase context | Backend + Frontend |
-| Document Management | Document metadata, upload flow, readiness | Backend + Frontend |
-| Lender Offers | Loan options, comparisons, offer status | Backend + Frontend |
-| Notifications | User and workflow notifications | Backend + Frontend |
-| Administration | Internal configuration and management | Backend + Frontend |
-| Audit and Compliance | Traceability, audit history, compliance evidence | Backend primarily |
+| Module | MVP Status | Responsibility | Expected Repo Impact |
+| ------ | ---------- | -------------- | -------------------- |
+| Loan Management Core | MVP | Loan workspace, loan details, part payments, balance transfer inputs | Backend + Frontend |
+| Calculator Engine | MVP | EMI, part payment, balance transfer, comparison calculations | Backend and/or Frontend |
+| Dashboard and Reporting | MVP | Loan summary, outstanding, EMI, savings, basic reporting | Backend + Frontend |
+| Identity and User Management | Deferred | Registration, login, profile, subscription | Backend + Frontend |
+| Property Management | Deferred | Property profile, builder details, possession, construction tracking | Backend + Frontend |
+| Document Intelligence | Deferred | OCR, document summary, risk detection | Backend + AI + Frontend |
+| AI Financial Intelligence | Deferred | Loan health score, advisor, recommendations | Backend + AI + Frontend |
+| Notifications and Automation | Deferred | EMI due, demand letter, refinance alerts | Backend + Frontend |
+| Property Intelligence | Deferred | Builder ratings, RERA, price trends, locality score | Backend + Frontend |
+| Marketplace | Deferred | Lenders, advisors, professional services, SaaS plans | Backend + Frontend |
 
 ## Architecture Principles
 

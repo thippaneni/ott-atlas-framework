@@ -20,7 +20,19 @@ HOOS is a Home Ownership Operating System focused initially on home loan intelli
 
 ## Product Vision
 
-HOOS helps users understand, prepare for, and progress through the home loan journey with structured guidance, eligibility intelligence, document readiness, and future lender comparison workflows.
+HOOS helps Indian home loan customers manage, understand, optimize, and save money on their home loans. The immediate MVP is focused on loan workspace, calculators, simulation, refinance analysis, and dashboard reporting.
+
+## MVP Scope Lock
+
+The current MVP SHALL focus only on:
+
+1. Loan Workspace
+2. EMI Calculator
+3. Part Payment Simulator
+4. Balance Transfer Analyzer
+5. Loan Dashboard
+
+See docs/product/hoos-mvp-scope.md.
 
 ## Initial Scope
 
@@ -49,16 +61,21 @@ HOOS helps users understand, prepare for, and progress through the home loan jou
 
 ## Initial Conceptual Modules
 
-- Identity and Access
-- Borrower Profile
-- Loan Application
-- Eligibility Intelligence
-- Property and Purchase Details
-- Document Management
-- Lender Offers
-- Notifications
-- Administration
-- Audit and Compliance
+### MVP Modules
+
+- Loan Management Core
+- Calculator Engine
+- Dashboard and Reporting
+
+### Deferred Modules
+
+- Identity and User Management
+- Property Management
+- Document Intelligence
+- AI Financial Intelligence
+- Notifications and Automation
+- Property Intelligence
+- Marketplace
 
 ## Acceptance Summary
 
